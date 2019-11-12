@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 3.0)
+project(arduino)
+
+set(CMAKE_CXX_STANDARD 17)
+set(SUBPROJECTS EEPROM io serial utils)
+set(DIRS src inc)
+
+file(GLOB SOURCES ${SOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file(GLOB HEADERS ${HEADERS} ${CMAKE_CURRENT_SOURCE_DIR}/inc/*.h)
+file(GLOB HEADERS ${HEADERS} ${CMAKE_CURRENT_SOURCE_DIR}/inc/*.hpp)
+install(FILES ${HEADERS} DESTINATION ${INC_INSTALL_DIR}/${PROJECT_NAME}/)
+
+foreach(PROJ ${SUBPROJECTS})
+	file(GLOB SOURCES ${SOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/src/${PROJ}/*.cpp)
+	file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/inc/${PROJ}/*.hpp)
+	install(FILES ${HEADERS} DESTINATION ${INC_INSTALL_DIR}/${PROJECT_NAME}/${PROJ})
+endforeach()
+
+add_compile_definitions(${PROJECT_NAME} PRIVATE ARDUINO_${ARDUINO})
+if (STATIC)
+	add_compile_definitions(${PROJECT_NAME} PRIVATE STATIC)
+    add_library(${PROJECT_NAME} STATIC ${SOURCES})
+else()
+	add_library(${PROJECT_NAME} SHARED ${SOURCES})
+endif()
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
+install(TARGETS ${PROJECT_NAME} DESTINATION ${LIB_INSTALL_DIR})
