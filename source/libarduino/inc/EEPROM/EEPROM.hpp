@@ -17,6 +17,8 @@ class C_EEPROM
     byte read(int);
     void write(int, byte);
     void update(int, byte);
+
+    int length();
 };
 
 #ifndef EEPROM_NODEFINE

@@ -74,3 +74,8 @@ void C_EEPROM::update(int adress, byte value)
     if (this->memory[adress] != value)
         this->write(adress, value);
 }
+
+int C_EEPROM::length()
+{
+    return EEPROM_SIZE;
+}
