@@ -1,8 +1,8 @@
 #ifndef IO_HPP
 #define IO_HPP
 
-#define DPINCOUNT 13
-#define APINCOUNT 5
+#define DPINCOUNT 14
+#define APINCOUNT 6
 
 #include <stdint.h>
 
