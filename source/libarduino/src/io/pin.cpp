@@ -16,7 +16,7 @@ Pin::Pin() : Pin::Pin(LAST_PIN++) {}
 Pin::Pin(PIN number)
 {
     this->number = number;
-    sprintf(this->file, number > DPINCOUNT ? "PINS/A%i" : "PINS/D%i", number > DPINCOUNT ? this->number - DPINCOUNT : this->number);
+    sprintf(this->file, number >= DPINCOUNT ? "PINS/A%i" : "PINS/D%i", number >= DPINCOUNT ? this->number - DPINCOUNT : this->number);
     this->mode = NONE;
     this->value = LOW;
     this->analogvalue = 0;
@@ -38,7 +38,7 @@ Pin::Pin(PIN number)
 void Pin::readFile()
 {
     FILE* file = fopen(this->file, "rb");
-    if (this->number > DPINCOUNT)
+    if (this->number >= DPINCOUNT)
         fread(&this->analogvalue, sizeof(ANALOGVALUE), 1, file);
     else
         fread(&this->value, sizeof(VALUE), 1, file);
@@ -48,7 +48,7 @@ void Pin::readFile()
 void Pin::writeFile()
 {
     FILE* file = fopen(this->file, "wb");
-    if (this->number > DPINCOUNT)
+    if (this->number >= DPINCOUNT)
         fwrite(&this->analogvalue, sizeof(ANALOGVALUE), 1, file);
     else
         fwrite(&this->value, sizeof(VALUE), 1, file);
