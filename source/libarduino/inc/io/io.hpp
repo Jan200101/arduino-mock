@@ -56,6 +56,6 @@ void analogReference(VOLTTYPE);
 void analogWrite(PIN, PWMVALUE);
 
 // MISC
-void delay(int);
+void delay(float);
 
 #endif

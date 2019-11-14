@@ -43,7 +43,7 @@ void analogWrite(PIN pin, PWMVALUE value)
     STUB;
 }
 
-void delay(int ms)
+void delay(float ms)
 {
     time_t now = time(nullptr);
     ms = ms / 1000;
