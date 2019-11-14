@@ -1,4 +1,5 @@
 #include "io/io.hpp"
+#include <cerrno>
 #include <ctime>
 #include "io/pin.hpp"
 #include "utils/defs.hpp"
@@ -43,12 +44,24 @@ void analogWrite(PIN pin, PWMVALUE value)
     STUB;
 }
 
-void delay(float ms)
+int delay(int ms)
 {
-    time_t now = time(nullptr);
-    ms = ms / 1000;
+    struct timespec ts;
+    int ret;
 
-    while ((time(nullptr) - now) < ms)
+    if (ms < 0)
     {
+        errno = EINVAL;
+        return -1;
     }
+
+    ts.tv_sec = ms / 1000;
+    ts.tv_nsec = (ms % 1000) * 1000000;
+
+    do
+    {
+        ret = nanosleep(&ts, &ts);
+    } while (ret && errno == EINTR);
+
+    return ret;
 }
