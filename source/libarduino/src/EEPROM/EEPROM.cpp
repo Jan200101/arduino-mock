@@ -57,15 +57,12 @@ void C_EEPROM::clear()
 byte C_EEPROM::read(int adress)
 {
     this->readFile();
-    //printf("READ %i %i\n", adress, this->memory[adress]);
     return adress < EEPROM_SIZE ? this->memory[adress] : 0;
 }
 
 void C_EEPROM::write(int adress, byte value)
 {
-    //printf("WRITE %i %i\n", adress, value);
     if (adress < EEPROM_SIZE) this->memory[adress] = value;
-
     this->writeFile();
 }
 

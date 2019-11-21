@@ -16,21 +16,17 @@ class C_Serial
 
     operator bool()
     {
-#ifdef SERIAL_NOT_AVAILABLE
-        return 0;
-#else
-        return 1;
-#endif
+        return true;
     }
 
     bool available()
     {
-        return bool(*this);
+        return *this;
     }
 
     bool availableForWrite()
     {
-        return this->available();
+        return *this;
     }
     void begin(int, CONFIG = SERIAL_8N1);
 
