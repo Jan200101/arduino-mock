@@ -18,8 +18,8 @@ void C_Serial::begin(int baud, CONFIG config)
     this->baud = baud;
 }
 
-size_t C_Serial::print(const char* text) { SERIAL_STR_PRINT("%s\n", text); }
-size_t C_Serial::print(char text) { SERIAL_STR_PRINT("%c\n", text); }
+size_t C_Serial::print(const char* text) { SERIAL_STR_PRINT("%s", text); }
+size_t C_Serial::print(char text) { SERIAL_STR_PRINT("%c", text); }
 size_t C_Serial::print(uint8_t val, BASEX) { SERIAL_PRINT("%i", val); }
 size_t C_Serial::print(int val, BASEX) { SERIAL_PRINT("%i", val); }
 size_t C_Serial::print(unsigned int val, BASEX) { SERIAL_PRINT("%u", val); }
