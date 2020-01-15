@@ -1,0 +1,9 @@
+libdir=@CMAKE_INSTALL_FULL_LIBDIR@
+includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
+
+Name: libarduino
+Description: @LIBARDUINO_DESCRIPTION@
+URL: @LIBARDUINO_URL@
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -larduino
+Cflags: -I${includedir} -I${includedir}/arduino -D__LIBARDUINO__

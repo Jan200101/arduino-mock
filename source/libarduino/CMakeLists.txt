@@ -25,3 +25,4 @@ else()
 endif()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 install(TARGETS ${PROJECT_NAME} DESTINATION ${LIB_INSTALL_DIR})
+
