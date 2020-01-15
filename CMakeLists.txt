@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(libarduino)
+project(libarduino VERSION 0.0.2)
 
 option(STATIC "Build static library" 0)
 option(ARDUINO "Set Arduino type" OFF)
